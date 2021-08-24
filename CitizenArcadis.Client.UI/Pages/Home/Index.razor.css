@@ -1,0 +1,88 @@
+﻿.app-logo-main {
+    height: calc(16px + 3vw);
+    background: url(images/arcadis-logo-white.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.user-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+}
+
+.user-image{
+    background: url(images/user.svg);
+    width: 50px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 12px;
+}
+
+.user-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.app-title-container {
+    height: 100% !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 40px;
+}
+
+.app-title-description{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: calc(13px + 2.5vw);
+    font-weight: 700;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.user-greet-text > a {
+    color: goldenrod;
+    font-weight: 900;
+}
+
+@media only screen and (max-width: 600px) {
+    .user-info {
+        opacity: 0;
+    }
+
+    .app-title-container {
+        top: 0px;
+    }
+}
+
+@media (min-width: 600px) {
+    ::deep .mud-grid-item-sm-3 {
+        flex-grow: 0;
+        max-width: 20% !important;
+        flex-basis: 20% !important;
+    }
+}
+
+
+::deep .mud-grid-item-xs-6 {
+    max-width: 100%;
+    flex-grow: 1;
+}
+
+.app-index {
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient( 180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}

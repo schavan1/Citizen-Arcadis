@@ -1,0 +1,23 @@
+﻿.center {
+    display: flex !important;
+    justify-content: center;
+    align-content: center;
+}
+
+.menu-item {
+    flex-direction: column;
+}
+
+.menu-item-image {
+    width: 135px;
+}
+
+.menu-item-title {
+    text-align: center;
+}
+
+::deep .mud-button-filled.mud-button-filled-secondary.mud-no-border {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+}

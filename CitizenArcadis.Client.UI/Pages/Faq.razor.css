@@ -1,0 +1,29 @@
+﻿::deep
+.app-theme-bg {
+    background: #fff !important;
+}
+
+::deep
+.mud-alert-message {
+    width: 100% !important;
+}
+
+::deep
+.mud-alert.mud-alert-text-normal {
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+
+html, body,.app-faq{
+    background:#fff!important;
+}
+
+/*
+
+*/
+
+.app-faq{
+    background: #fff;
+}

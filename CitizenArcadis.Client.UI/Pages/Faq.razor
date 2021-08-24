@@ -1,0 +1,63 @@
+﻿@page "/faq"
+@inherits FormBasic<object>;
+@* TODO:Replace div with mud grid *@
+<div class="container-fluid faq-container">
+    <div class="timeLine">
+        <MudTimeline TimelinePosition="TimelinePosition.Top" TimelineOrientation="TimelineOrientation.Horizontal">
+            @foreach (var item in FormStages)
+            {
+                <MudTimelineItem Color="@item.Color" Variant="Variant.Filled">
+                    <ItemContent>
+                        <MudAlert Severity="@item.Severity">@item.Stage</MudAlert>
+                    </ItemContent>
+                </MudTimelineItem>
+            }
+        </MudTimeline>
+    </div>
+
+    <div class="form">
+        <MudCard Class="faq-form">
+            @switch (CurrentFormStage)
+            {
+                case 0:
+                    <MudTextField T="string" Label="Username" />
+                    break;
+                case 1:
+                    <MudTextField T="string" Label="Email" />
+                    break;
+                case 2:
+                    <MudTextField T="string" Label="Password" />
+                    break;
+                case 3:
+                default:
+                    <h1>Form Is Submitted</h1>
+                    break;
+            }
+            <br />
+            <div class="faq-button">
+                @if (CurrentFormStage > 0 && CurrentFormStage < FormStages.Count - 1)
+                {
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="MoveBack">Back</MudButton>
+                }
+                @if (CurrentFormStage < FormStages.Count - 1)
+                {
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Movenext">Next</MudButton>
+                }
+                else
+                {
+                    <a href="/">
+                        <MudButton Variant="Variant.Filled" Color="Color.Success">Success</MudButton>
+                    </a>
+                }
+            </div>
+        </MudCard>
+        @*<div>
+                FormStages.Count:     @FormStages.Count;
+            </div>
+            <br />
+
+            <div>
+                CurrentFormStage:      @CurrentFormStage;
+            </div>*@
+    </div>
+</div>

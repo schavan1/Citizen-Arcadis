@@ -1,0 +1,46 @@
+﻿@page "/"
+@using CitizenArcadis.Client.UI.Models
+
+<div class="app-index">
+
+    <MudGrid style="height:99%!important;width:98%" Spacing="1">
+
+        <MudItem xs="12">
+            <AppTitle></AppTitle>
+        </MudItem>
+
+        <MudItem xs="12">
+            <MudGrid Spacing="1" style="height:100%!important;width:100%">
+                <MenuItemList secondRowItems="firstRowItems" Color="Color.Primary"></MenuItemList>
+            </MudGrid>
+        </MudItem>
+
+        <MudItem xs="12">
+            <MudGrid Spacing="0" style="height:100%!important;width:100%">
+                <MenuItemList secondRowItems="secondRowItems" Color="Color.Secondary"></MenuItemList>
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+    </div>
+    @code
+{
+        private List<StartItemList> firstRowItems = new List<StartItemList>() {
+
+    new StartItemList("Getting started"),
+    new StartItemList("Development guide"),
+    new StartItemList("Log & request"),
+    new StartItemList("1:1 Assistance"),
+    new StartItemList("FQA"),
+    };
+
+        private List<StartItemList> secondRowItems = new List<StartItemList>() {
+
+    new StartItemList("Self Service"),
+    new StartItemList("Create development environment"){ PagePath="DevelopmentEnvironment"},
+    new StartItemList("View your environment"),
+    new StartItemList("View my request"),
+    new StartItemList("Authorize Account Requset"),
+
+        };
+    }
+

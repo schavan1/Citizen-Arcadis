@@ -1,0 +1,38 @@
+﻿.grid-container {
+    width: 70%
+}
+.btn-stack {
+  /*  display: flex;
+    justify-content: space-between;*/
+  margin-top:10px;
+}
+.success {
+    text-align: end;
+    margin-top: 36px;
+}
+pre {
+    font-size: 14px;
+    border: solid 1px grey;
+    background: #333;
+    color: yellow;
+    padding: 0.5rem;
+}
+.app-index {
+    background: #052767;
+}
+
+.form-ps {
+    min-height: 329px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .form-ps > form {
+        width: 100% !important
+    }
+
+    .form-ps > form {
+        width: 100%;
+        display: block;
+    }

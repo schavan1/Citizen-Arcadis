@@ -1,0 +1,126 @@
+﻿@page "/DevelopmentEnvironment"
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+
+@inherits FormBasic<RegisterAccountForm>;
+
+<div class="app-index">
+    <div class="grid-container center">
+        <MudCard  Outlined="true" Style=" width: 100%; padding: 2rem; min-width: 600px; position:relative">
+            <MudGrid>
+                <MudItem xs="6" md="6" Class="my-auto">
+                    <MudTimeline @ref="timeline" Reverse="true">
+                        @for (int i = 0; i < FormStages.Count; i++)
+                        {
+                            var item = FormStages[i];
+                            bool isCurrent = CurrentFormStage == i;
+                            int c = i;
+                            if (isCurrent)
+                            {
+                        <MudText Align="Align.Start">
+                            <MudText Typo="Typo.h5">         @item.Stage</MudText>
+                   
+                        </MudText>
+                            }
+
+                            <MudTimelineItem Color="@(isCurrent?Color.Primary:Color.Default )" Size="@(isCurrent?Size.Large:Size.Small )" Variant="@item.DotVariant" Elevation="@item.DotElevation" HideDot="@item.HideDot">
+                                <ItemDot>
+                                    <div class="www" @onclick="@(e => SetCurrent(c))">
+
+                                        @if (!@item.IsInvalid)
+                                        {
+                                            <MudIcon Size="@item.DotSize" />
+                                        }
+                                        else
+                                        {
+                                            <MudAvatar Size="@item.DotSize" Image="./images/error.png" />
+                                        }
+                                    </div>
+                                </ItemDot>
+                            </MudTimelineItem>
+
+                        }
+
+                    </MudTimeline>
+                </MudItem>
+
+                <MudItem Class="my-auto" xs="6" md="6">
+                    <EditForm @ref="Form" Model="@model" OnValidSubmit="OnValidSubmit">
+                        <DataAnnotationsValidator />
+                        <MudCardContent>
+
+                            @switch (CurrentFormStage)
+                            {
+                                case 0:
+                                    <MudText Typo="Typo.body2">
+                                       Please enter the name for your new project.
+                                    </MudText>
+                                    <MudTextField Label="Name Of Project"
+                                                  @bind-Value="model.NameOfProject" For="@(() => model.NameOfProject)" />
+                                    break;
+                                case 1:
+                                    <MudText Typo="Typo.body2">
+                                        Please check if citizen Arcadia Repository contains Project matching your requirements.
+                                    </MudText>
+                                    <MudSelect Disabled="@model.IsUnAvailable" Label="Select an Arcadia Projects" @bind-Value="@model.AvailableProjects"
+                                               OffsetY="true" OpenIcon="@Icons.Material.Filled.LocalDrink" AdornmentColor="Color.Secondary">
+
+
+                                        @foreach (var db in ExistingProjects)
+                                                {
+
+                                            <MudSelectItem Value="@db">@db</MudSelectItem>
+                                                }
+                                    </MudSelect>
+                                    <br />
+                                    <MudCheckBox @bind-Checked="@model.IsUnAvailable" Color="Color.Primary" Label="No I did not found my Project"></MudCheckBox>
+
+                                    break;
+
+                                case 2:
+                                    <MudText Typo="Typo.body2">
+                                        Do you want your solutio to utilize the following Platform ?
+                                    </MudText>
+                                    <MudAutocomplete T="string" Label="Search a Platform" @bind-Value="model.Platform" SearchFunc="@Search1"
+                                                     AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Primary" />
+                                    break;
+                                case 3:
+                                    <MudText Typo="Typo.body2">
+                                        Please Verify the Final Configuration before submittion.
+                                    </MudText>
+                                    <pre>
+                                      @getJson()
+                                                </pre>
+                                    break;
+                            }
+
+                            <div class="btn-stack">
+                                @if (CurrentFormStage > 0 && CurrentFormStage < FormStages.Count - 1)
+                                {
+                                    <div style="float:left">   <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="MoveBack">Back</MudButton></div>
+                                }
+
+                                @if (CurrentFormStage < FormStages.Count - 1)
+                                {
+                                    <div style="float:right"> <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Movenext">Next</MudButton></div>
+                                }
+
+                            </div>
+
+
+                        </MudCardContent>
+
+                    </EditForm>
+               
+                </MudItem>
+                <MudItem Class="my-auto" xs="12" md="12">
+                    <div class="success">
+                            <MudButton Size=" Size.Large"  Variant="Variant.Filled" Color="Color.Success"  OnClick="Finish" >Finish</MudButton>
+                    </div>
+                </MudItem>
+            </MudGrid>
+        </MudCard>
+  
+
+    </div>
+</div>

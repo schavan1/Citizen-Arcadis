@@ -1,0 +1,29 @@
+﻿@using CitizenArcadis.Client.UI.Models
+    @foreach (var item in secondRowItems)
+    {
+<MudItem xs="6" sm="3">
+    <a href="./@item.PagePath" class="no-decoration">
+
+        <MudButton Variant="Variant.Filled" Color="Color" Class="d-flex align-center justify-center  mud-width-full mud-height-full  py-8 mud-no-border" Style="    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;">
+
+            <div class="menu-item center">
+                <div class="menu-item-image center">
+                    <img src="images/@item.ImageUrl" alt="Alternate Text" />
+                </div>
+                <div class="menu-item-title"> @item.Title</div>
+            </div>
+        </MudButton>
+    </a>
+
+</MudItem>
+    }
+
+@code {
+    [Parameter]
+    public List<StartItemList> secondRowItems { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; }
+}
